@@ -1,15 +1,22 @@
 <template>
-  <section class="glass"></section>
+  <section class="glass">
+    <Dashboard />
+    <Games />
+  </section>
 </template>
 
 <script>
-export default {}
+import Dashboard from '../components/Dashboard.vue'
+import Games from '../components/Games.vue'
+export default {
+  components: { Dashboard, Games },
+}
 </script>
 
 <style lang="scss" scoped>
 .glass {
   background-color: white;
-  min-height: 80vh;
+  height: 80vh;
   width: 70%;
   background: linear-gradient(
     to right bottom,
@@ -19,5 +26,7 @@ export default {}
   border-radius: 2rem;
   z-index: 2;
   backdrop-filter: blur(2rem);
+
+  display: flex;
 }
 </style>

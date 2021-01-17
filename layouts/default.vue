@@ -1,25 +1,13 @@
 <template>
   <div class="background">
-    <div class="background__circle-1"></div>
-    <div class="background__circle-2"></div>
+    <div class="x">
+      <div class="background__circle-1 y"></div>
+    </div>
     <Nuxt />
   </div>
 </template>
 
 <style lang="scss">
-// Breakpoints
-
-$bp-largest: 75em; // 1200px
-$bp-large: 68.75em; // 1100px
-$bp-medium: 56.25em; // 900px
-$bp-small: 37.5em; // 600px
-$bp-smallest: 31.25em; // 500px
-
-// Colors
-
-$primary-color: #ff706c;
-$secondary-color: #ff935e;
-
 html {
   font-family: 'Poppins', sans-serif;
   font-size: 16px;
@@ -30,6 +18,18 @@ html {
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
   font-size: 62.5%;
+
+  @media only screen and (max-width: $bp-large) {
+    font-size: 50%;
+  }
+
+  @media only screen and (max-width: $bp-medium) {
+    font-size: 58%;
+  }
+
+  @media only screen and (max-width: $bp-small) {
+    font-size: 56%;
+  }
 }
 
 *,
@@ -37,6 +37,10 @@ html {
 *::after {
   box-sizing: border-box;
   margin: 0;
+}
+
+body {
+  height: 100vh;
 }
 
 .background {
@@ -62,13 +66,49 @@ html {
   }
 
   &__circle-1 {
-    bottom: 5%;
+    top: 5%;
     left: 5%;
   }
+}
 
-  &__circle-2 {
-    top: 3%;
-    right: 8%;
+h1 {
+  color: $primary-color-text;
+  font-weight: 600;
+  font-size: 3rem;
+  opacity: 0.8;
+}
+
+h2 {
+  color: $secondary-color-text;
+  font-weight: 500;
+  opacity: 0.8;
+}
+
+h3 {
+  color: $primary-color-text;
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+$size: 300px;
+
+.x {
+  animation: x 250s linear infinite alternate;
+}
+
+.y {
+  animation: y 140s linear infinite alternate;
+}
+
+@keyframes x {
+  100% {
+    transform: translateX((calc(100vw - #{$size})));
+  }
+}
+
+@keyframes y {
+  100% {
+    transform: translateY(calc(100vh - #{$size}));
   }
 }
 </style>
