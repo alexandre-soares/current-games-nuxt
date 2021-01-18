@@ -3,6 +3,9 @@
     <div class="x">
       <div class="background__circle-1 y"></div>
     </div>
+
+    <div class="circle-background circle-background--1"></div>
+    <div class="circle-background circle-background--2"></div>
     <Nuxt />
   </div>
 </template>
@@ -30,6 +33,8 @@ html {
   @media only screen and (max-width: $bp-small) {
     font-size: 56%;
   }
+
+  transition: background 0.3s ease-in;
 }
 
 *,
@@ -41,6 +46,11 @@ html {
 
 body {
   height: 100vh;
+  overflow: hidden;
+
+  @media only screen and (max-width: $bp-large) {
+    overflow: auto;
+  }
 }
 
 .background {
@@ -49,6 +59,11 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media only screen and (max-width: $bp-large) {
+    height: auto;
+    min-height: auto;
+  }
 
   &__circle-1,
   &__circle-2 {
@@ -68,6 +83,10 @@ body {
   &__circle-1 {
     top: 5%;
     left: 5%;
+  }
+  &__circle-2 {
+    bottom: 5%;
+    right: 5%;
   }
 }
 
@@ -93,11 +112,11 @@ h3 {
 $size: 300px;
 
 .x {
-  animation: x 250s linear infinite alternate;
+  animation: x 150s linear infinite alternate;
 }
 
 .y {
-  animation: y 140s linear infinite alternate;
+  animation: y 80s linear infinite alternate;
 }
 
 @keyframes x {
@@ -109,6 +128,37 @@ $size: 300px;
 @keyframes y {
   100% {
     transform: translateY(calc(100vh - #{$size}));
+  }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+
+.circle-background {
+  position: absolute;
+  width: 70rem;
+  height: 70rem;
+  border-radius: 50%;
+  background: linear-gradient(
+    to right top,
+    $primary-circle-color,
+    $secondary-circle-color
+  );
+  filter: blur(10rem);
+
+  &--1 {
+    bottom: -10%;
+    left: -10%;
+  }
+  &--2 {
+    top: -10%;
+    right: -10%;
+    transform: rotate(90deg);
   }
 }
 </style>

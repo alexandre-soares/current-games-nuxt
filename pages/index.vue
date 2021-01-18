@@ -1,7 +1,7 @@
 <template>
   <section class="glass">
-    <Dashboard />
-    <Games />
+    <Dashboard @clicked="onClickChild" />
+    <Games :selected-console="selectedConsole" />
   </section>
 </template>
 
@@ -10,6 +10,16 @@ import Dashboard from '../components/Dashboard.vue'
 import Games from '../components/Games.vue'
 export default {
   components: { Dashboard, Games },
+  data() {
+    return {
+      selectedConsole: 'PS4',
+    }
+  },
+  methods: {
+    onClickChild(value) {
+      this.selectedConsole = value
+    },
+  },
 }
 </script>
 
@@ -28,5 +38,16 @@ export default {
   backdrop-filter: blur(2rem);
 
   display: flex;
+
+  @media only screen and (max-width: $bp-large) {
+    flex-direction: column;
+    height: auto;
+    min-height: auto;
+    margin: 2rem 0;
+  }
+
+  @media only screen and (max-width: $bp-medium) {
+    width: 95%;
+  }
 }
 </style>
